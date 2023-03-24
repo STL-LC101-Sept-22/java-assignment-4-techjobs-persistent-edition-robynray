@@ -6,7 +6,9 @@ import javax.persistence.*;
 public class Job{
 
     @Id
+//    This a primary key
     @GeneratedValue
+//    The database will generate a primary key
     private int id;
 
     private String name;
