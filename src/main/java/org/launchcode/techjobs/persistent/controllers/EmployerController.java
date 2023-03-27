@@ -30,7 +30,7 @@ public class EmployerController {
         model.addAttribute(employerRepository.findAll());
 //        Iterable employers = employerRepository.findAll();
 
-        return "employers/index";
+        return "employer/index";
     }
 
     @GetMapping("add")
@@ -43,10 +43,12 @@ public class EmployerController {
     public String processAddEmployerForm(@ModelAttribute @Valid Employer newEmployer,
                                     Errors errors, Model model) {
 
-        if (errors.hasErrors()) return "employers/add";
+        if (errors.hasErrors()){ return "employers/add";
+    }
 //        Save a valid object
 //    Object employer=employerRepository.save(newEmployer);
         model.addAttribute(employerRepository.save(newEmployer));
+//       employerRepository.save(newEmployer);
         return "redirect:";
     }
 

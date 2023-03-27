@@ -20,15 +20,16 @@ public class SkillController{
         @Autowired
         private SkillRepository skillRepository;
 
-        @RequestMapping("")
-        @GetMapping("index")
+//        @RequestMapping("")
+        @GetMapping("")
         public String index(Model model) {
             /*
             model.addAttribute("title", "All Skills");
             model.addAttribute("columns", columnChoices);
 */
-            model.addAttribute("index", columnChoices);
-            Iterable skills = skillRepository.findAll();
+            model.addAttribute("title", "All Skills");
+            model.addAttribute("skills",skillRepository.findAll());
+//            Iterable skills  =skillRepository.findAll());
 
             return "skills/index";
         }
