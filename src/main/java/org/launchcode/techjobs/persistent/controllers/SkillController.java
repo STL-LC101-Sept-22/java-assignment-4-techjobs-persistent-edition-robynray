@@ -11,8 +11,6 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.Optional;
 
-import static org.launchcode.techjobs.persistent.controllers.ListController.columnChoices;
-
 @Controller
 @RequestMapping("skills")
 public class SkillController{
@@ -44,10 +42,15 @@ public class SkillController{
         public String processAddSkillForm(@ModelAttribute @Valid Skill newSkill,
                                              Errors errors, Model model) {
 
-            if (errors.hasErrors()) return "skills/add";
+            if (errors.hasErrors()) {
+                return "skills/add";
+            }
 //        Save a valid object
-           skillRepository.save(newSkill);
-            return "redirect:";
+           Skill skill = skillRepository.save(newSkill);
+            model.addAttribute("skill", skill);
+//            newSkill.setSkills(skillObj)
+//            skillRepository.save(newSkill);
+            return "redirect:./";
         }
 
         @GetMapping("view/{skillId}")

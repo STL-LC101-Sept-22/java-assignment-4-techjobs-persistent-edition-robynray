@@ -17,7 +17,6 @@ public abstract class AbstractEntity {
 
     @NotNull
     @Size(min = 3, max = 50)
-
     private String name;
 
     protected AbstractEntity() {

@@ -20,17 +20,15 @@ public class EmployerController {
     @Autowired
     private EmployerRepository employerRepository;
 
-    @RequestMapping("")
-    @GetMapping("index")
+//    @RequestMapping("")
+    @GetMapping("")
     public String index(Model model) {
 
-        // Could I possibly use employers or title instead of index
-//        model.addAttribute("employers", "Employer");
-        model.addAttribute("title", "Employer");
-        model.addAttribute(employerRepository.findAll());
+        model.addAttribute("title", "All Employers");
+        model.addAttribute("employers", employerRepository.findAll());
 //        Iterable employers = employerRepository.findAll();
-
-        return "employer/index";
+//        model.addAttribute("title", "Add Employer");
+        return "employers/index";
     }
 
     @GetMapping("add")
@@ -39,18 +37,32 @@ public class EmployerController {
         return "employers/add";
     }
 
+//    public EmployerRepository getEmployerRepository() {
+//        return employerRepository;
+//    }
+//
+//    public void setEmployerRepository(EmployerRepository employerRepository) {
+//        this.employerRepository = employerRepository;
+//    }
+
     @PostMapping("add")
     public String processAddEmployerForm(@ModelAttribute @Valid Employer newEmployer,
                                     Errors errors, Model model) {
 
-        if (errors.hasErrors()){ return "employers/add";
+        if (errors.hasErrors()){
+            return "employers/add";
     }
 //        Save a valid object
-//    Object employer=employerRepository.save(newEmployer);
-        model.addAttribute(employerRepository.save(newEmployer));
-//       employerRepository.save(newEmployer);
+        Employer employer = employerRepository.save(newEmployer);
+        model.addAttribute("employer", employer);
         return "redirect:";
     }
+//        Employer employer = newEmployer;
+//    Object employer=employerRepository.save(newEmployer);
+
+//        model.addAttribute(employerRepository.save(newEmployer));
+//       employerRepository.save(newEmployer);
+
 
     @GetMapping("view/{employerId}")
     public String displayViewEmployer(Model model, @PathVariable int employerId) {
