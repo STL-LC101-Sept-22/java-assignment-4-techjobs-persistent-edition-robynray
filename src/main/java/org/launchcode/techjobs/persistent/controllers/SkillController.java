@@ -18,23 +18,25 @@ public class SkillController{
         @Autowired
         private SkillRepository skillRepository;
 
-//        @RequestMapping("")
-        @GetMapping("")
+        @RequestMapping("")
+//        @GetMapping("")
         public String index(Model model) {
+            model.addAttribute("skills",skillRepository.findAll());
+            return "skills/index";
             /*
             model.addAttribute("title", "All Skills");
             model.addAttribute("columns", columnChoices);
 */
-            model.addAttribute("title", "All Skills");
-            model.addAttribute("skills",skillRepository.findAll());
+//            model.addAttribute("title", "All Skills");
+
 //            Iterable skills  =skillRepository.findAll());
 
-            return "skills/index";
+
         }
 
         @GetMapping("add")
         public String displayAddSkillForm(Model model) {
-            model.addAttribute(new Skill());
+            model.addAttribute("skill", new Skill());
             return "skills/add";
         }
 
@@ -46,13 +48,11 @@ public class SkillController{
                 return "skills/add";
             }
 //        Save a valid object
-           Skill skill = skillRepository.save(newSkill);
-            model.addAttribute("skill", skill);
-//            newSkill.setSkills(skillObj)
-//            skillRepository.save(newSkill);
+            skillRepository.save(newSkill);
             return "redirect:./";
         }
-
+    //            newSkill.setSkills(skillObj)
+//            skillRepository.save(newSkill);
         @GetMapping("view/{skillId}")
         public String displayViewSkill(Model model, @PathVariable int skillId) {
 

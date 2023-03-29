@@ -21,10 +21,10 @@ public class EmployerController {
     private EmployerRepository employerRepository;
 
 //    @RequestMapping("")
-    @GetMapping("")
+    @RequestMapping("")
     public String index(Model model) {
 
-        model.addAttribute("title", "All Employers");
+//        model.addAttribute("title", "All Employers");
         model.addAttribute("employers", employerRepository.findAll());
 //        Iterable employers = employerRepository.findAll();
 //        model.addAttribute("title", "Add Employer");
@@ -34,6 +34,7 @@ public class EmployerController {
     @GetMapping("add")
     public String displayAddEmployerForm(Model model) {
         model.addAttribute(new Employer());
+//        model.addAttribute("employer",new Employer());
         return "employers/add";
     }
 
@@ -52,9 +53,11 @@ public class EmployerController {
         if (errors.hasErrors()){
             return "employers/add";
     }
-//        Save a valid object
-        Employer employer = employerRepository.save(newEmployer);
-        model.addAttribute("employer", employer);
+//        model.addAttribute(employerRepository.save(newEmployer));
+       employerRepository.save(newEmployer);
+////        Save a valid object
+//        Employer employer =
+//        model.addAttribute("employer", employerRepository.findAll());
         return "redirect:";
     }
 //        Employer employer = newEmployer;

@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -23,7 +24,7 @@ public class Job extends AbstractEntity {
 //    public void testJobSkillsHasCorrectTypeAndAnnotation ()
     @ManyToMany
     @JoinColumn(name = "job.skills")
-    private List<Skill> skills;
+    private List<Skill> skills = new ArrayList<>();
 
     public Job() {
     }
@@ -31,13 +32,13 @@ public class Job extends AbstractEntity {
 
 //Constructor
 
-    public Job(Employer employer, List<Skill> skills) {
-//        super();
-        this.employer = employer;
-        this.skills = skills;
+    public Job(Employer anEmployer, List<Skill> someSkills) {
+        this.employer = anEmployer;
+        this.skills = someSkills;
     }
 
     // Getters and setters.
+
 
     public Employer getEmployer() {
         return employer;

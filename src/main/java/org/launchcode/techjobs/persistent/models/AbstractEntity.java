@@ -11,9 +11,8 @@ import java.util.Objects;
 public abstract class AbstractEntity {
 
    @Id
-    @GeneratedValue
-
-    private int id;
+   @GeneratedValue
+   private int id;
 
     @NotNull
     @Size(min = 3, max = 50)

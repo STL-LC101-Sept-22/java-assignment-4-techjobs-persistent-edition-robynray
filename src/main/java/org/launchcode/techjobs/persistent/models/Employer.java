@@ -19,14 +19,14 @@ public class Employer extends AbstractEntity {
     private List<Job> jobs =new ArrayList<>();
 
 //  Constructor
-    public Employer(String location) {
-        this.location = location;
-    }
-
-    public Employer(String location, List<Job> jobs) {
-        this.location = location;
-        this.jobs = jobs;
-    }
+//    public Employer(String location) {
+//        this.location = location;
+//    }
+//
+//    public Employer(String location, List<Job> jobs) {
+//        this.location = location;
+//        this.jobs = jobs;
+//    }
 //public accessor methods-commonly known as get method.
 
     public String getLocation() {
@@ -37,13 +37,13 @@ public class Employer extends AbstractEntity {
         this.location = location;
     }
 
-    public void setJobs(List<Job> jobs) {
-        this.jobs = jobs;
-    }
-
-    public List<Job> getJobs() {
-        return jobs;
-    }
+//    public void setJobs(List<Job> jobs) {
+//        this.jobs = jobs;
+//    }
+//
+//    public List<Job> getJobs() {
+//        return jobs;
+//    }
 
     //No arg constructor
     public Employer() {
