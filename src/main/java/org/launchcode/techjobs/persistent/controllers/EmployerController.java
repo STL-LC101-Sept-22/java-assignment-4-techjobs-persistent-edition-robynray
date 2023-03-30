@@ -1,8 +1,9 @@
 package org.launchcode.techjobs.persistent.controllers;
 
 import org.launchcode.techjobs.persistent.models.Employer;
-import org.launchcode.techjobs.persistent.models.Job;
+//import org.launchcode.techjobs.persistent.models.Job;
 import org.launchcode.techjobs.persistent.models.data.EmployerRepository;
+import org.launchcode.techjobs.persistent.models.data.SkillRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,12 +21,17 @@ public class EmployerController {
     @Autowired
     private EmployerRepository employerRepository;
 
+    @Autowired
+    private SkillRepository skillRepository;
+
 //    @RequestMapping("")
     @RequestMapping("")
     public String index(Model model) {
 
 //        model.addAttribute("title", "All Employers");
         model.addAttribute("employers", employerRepository.findAll());
+        //Take out: M
+//        model.addAttribute("employer", "All Employers");
 //        Iterable employers = employerRepository.findAll();
 //        model.addAttribute("title", "Add Employer");
         return "employers/index";
@@ -34,7 +40,6 @@ public class EmployerController {
     @GetMapping("add")
     public String displayAddEmployerForm(Model model) {
         model.addAttribute(new Employer());
-//        model.addAttribute("employer",new Employer());
         return "employers/add";
     }
 
@@ -51,13 +56,11 @@ public class EmployerController {
                                     Errors errors, Model model) {
 
         if (errors.hasErrors()){
-            return "employers/add";
-    }
-//        model.addAttribute(employerRepository.save(newEmployer));
-       employerRepository.save(newEmployer);
-////        Save a valid object
-//        Employer employer =
-//        model.addAttribute("employer", employerRepository.findAll());
+            model.addAttribute(newEmployer);
+            return  "employers/add";
+        }
+//        Save a valid object
+        employerRepository.save(newEmployer);
         return "redirect:";
     }
 //        Employer employer = newEmployer;

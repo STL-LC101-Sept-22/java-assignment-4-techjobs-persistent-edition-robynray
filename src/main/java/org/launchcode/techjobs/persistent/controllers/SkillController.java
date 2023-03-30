@@ -36,7 +36,7 @@ public class SkillController{
 
         @GetMapping("add")
         public String displayAddSkillForm(Model model) {
-            model.addAttribute("skill", new Skill());
+            model.addAttribute(new Skill());
             return "skills/add";
         }
 
@@ -45,11 +45,12 @@ public class SkillController{
                                              Errors errors, Model model) {
 
             if (errors.hasErrors()) {
+                model.addAttribute(newSkill);
                 return "skills/add";
             }
 //        Save a valid object
             skillRepository.save(newSkill);
-            return "redirect:./";
+            return "redirect:";
         }
     //            newSkill.setSkills(skillObj)
 //            skillRepository.save(newSkill);
